@@ -15,13 +15,9 @@ class MagicCatalogApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => CardViewModel(),
       child: MaterialApp(
-        title: 'Magic: The Gathering Catalog',
+        title: 'Magic Card Catalog',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          scaffoldBackgroundColor: const Color(0xFF0a0e27),
-          fontFamily: 'Roboto',
-        ),
+        theme: ThemeData(primarySwatch: Colors.deepPurple),
         home: const CardCatalogView(),
       ),
     );
