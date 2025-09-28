@@ -4,19 +4,15 @@ import '../model/carta_model.dart';
 class CardViewModel extends ChangeNotifier {
   List<MagicCard> _cards = [];
   MagicCard? _selectedCard;
-  String _searchQuery = '';
-  String _filterRarity = 'all';
 
-  List<MagicCard> get cards => _filteredCards;
+  List<MagicCard> get cards => _cards;
   MagicCard? get selectedCard => _selectedCard;
-  String get searchQuery => _searchQuery;
-  String get filterRarity => _filterRarity;
 
   CardViewModel() {
     _loadCards();
   }
 
-  // Cargar datos de cartas (simulado - aquí podrías consumir una API)
+  // Cargar datos de cartas
   void _loadCards() {
     _cards = [
       MagicCard(
@@ -107,32 +103,9 @@ class CardViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Filtrado de cartas
-  List<MagicCard> get _filteredCards {
-    return _cards.where((card) {
-      bool matchesSearch = _searchQuery.isEmpty ||
-          card.name.toLowerCase().contains(_searchQuery.toLowerCase());
-      bool matchesRarity = _filterRarity == 'all' ||
-          card.rarity.toLowerCase() == _filterRarity.toLowerCase();
-      return matchesSearch && matchesRarity;
-    }).toList();
-  }
-
   // Seleccionar carta
   void selectCard(MagicCard? card) {
     _selectedCard = card;
-    notifyListeners();
-  }
-
-  // Actualizar búsqueda
-  void updateSearch(String query) {
-    _searchQuery = query;
-    notifyListeners();
-  }
-
-  // Actualizar filtro de rareza
-  void updateRarityFilter(String rarity) {
-    _filterRarity = rarity;
     notifyListeners();
   }
 
